@@ -3,29 +3,23 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from lets_kode_it.Letskodeit_Framework.pages.home.login_page import LoginPage
+import unittest
+import pytest
 
-
-class LoginTests():
+class LoginTests(unittest.TestCase):
 
     def test_validLogin(self):
-        # option = webdriver.FirefoxOptions()
-        # option.set_preference("dom.webdriver.enabled", False)
-        # option.set_preference("general.useragent.override", 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36')
-        # driver = webdriver.Firefox(executable_path="D:\Download\geckodriver.exe",options=option)
         chrome_options = webdriver.ChromeOptions()
-        # chrome_options.add_argument("--incognito")
         chrome_options.add_argument("--disable-blink-features=AutomationControlled")
         driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=chrome_options)
-        # driver = webdriver.Firefox(executable_path="D:\Download\geckodriver.exe")
-
         baseURL = "https://letskodeit.teachable.com/"
-        baseURL2 = "https://sso.teachable.com/secure/42299/users/sign_in?reset_purchase_session=1"
-        # driver = webdriver.Chrome()
         driver.maximize_window()
         driver.implicitly_wait(3)
         driver.get(baseURL)
 
-
+        lp = LoginPage(driver) #создал переменую lp  и унаследовал ее от LoginPage + сделал импорт файла
+        lp.login("n3g@mail.ru", "volcom99") #  в функцию login передал почту и пароль
 
         userIcon = driver.find_element(By.XPATH, "//img[@alt='n3g@mail.ru']")
         if userIcon is not None:
@@ -35,6 +29,4 @@ class LoginTests():
 
         driver.quit()
 
-ff = LoginTests()
-ff.test_validLogin()
 

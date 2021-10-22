@@ -11,10 +11,10 @@ class LoginPage():
         loginLink.click()
 
         emailField = self.driver.find_element(By.ID, "email")
-        emailField.send_keys("n3g@mail.ru")
+        emailField.send_keys(username)
 
         passwordField = self.driver.find_element(By.ID, "password")
-        passwordField.send_keys("volcom99")
+        passwordField.send_keys(password)
 
         loginButton = self.driver.find_element(By.NAME, "commit")
         loginButton.click()
