@@ -1,11 +1,8 @@
-import time
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from lets_kode_it.Letskodeit_Framework.pages.home.login_page import LoginPage
 import unittest
-import pytest
 
 class LoginTests(unittest.TestCase):
 
@@ -20,12 +17,9 @@ class LoginTests(unittest.TestCase):
 
         lp = LoginPage(driver) #создал переменую lp  и унаследовал ее от LoginPage + сделал импорт файла
         lp.login("n3g@mail.ru", "volcom99") #  в функцию login передал почту и пароль
+        result = lp.verifyLoginSuccessful()
 
-        userIcon = driver.find_element(By.XPATH, "//img[@alt='n3g@mail.ru']")
-        if userIcon is not None:
-            print("Login successful")
-        else:
-            print("Login Failed")
+        assert result == True
 
         driver.quit()
 

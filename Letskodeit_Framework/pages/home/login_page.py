@@ -37,3 +37,10 @@ class LoginPage(SeleniumDriver): # импортировал кастомный �
         self.enterEmail(email)
         self.enterPassword(password)
         self.clickLoginButton()
+
+    def verifyLoginSuccessful(self):
+        result = self.isElementPresent("//img[@alt='n3g@mail.ru']", locatorType="xpath")
+        return result
+
+    def verifyLoginFailed(self):
+        pass
