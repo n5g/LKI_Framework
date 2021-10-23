@@ -1,8 +1,12 @@
 from selenium.webdriver.common.by import By
 from lets_kode_it.Letskodeit_Framework.base.selenium_driver import SeleniumDriver
+from lets_kode_it.Letskodeit_Framework.utilities import custom_logger as cl
+import logging
 
 
 class LoginPage(SeleniumDriver): # импортировал кастомный класс  SeleniumDriver
+
+    log = cl.customLogger(logging.DEBUG)
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -11,20 +15,8 @@ class LoginPage(SeleniumDriver): # импортировал кастомный �
     # locators
     _login_link = "Login"
     _email_field = "email"
-    _password_field = "password2"
+    _password_field = "password"
     _login_button = "commit"
-
-    # def getLoginLink(self):
-    #     return self.driver.find_element(By.PARTIAL_LINK_TEXT, self._login_link)
-    #
-    # def getEmailField(self):
-    #     return self.driver.find_element(By.ID, self._email_field)
-    #
-    # def getPasswordField(self):
-    #     return self.driver.find_element(By.ID, self._password_field )
-    #
-    # def getLoginButton(self):
-    #     return self.driver.find_element(By.NAME, self._login_button)
 
     def clickLoginLink(self):
         # self.getLoginLink().click()
