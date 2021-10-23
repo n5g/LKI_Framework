@@ -1,9 +1,11 @@
 from selenium.webdriver.common.by import By
+from lets_kode_it.Letskodeit_Framework.base.selenium_driver import SeleniumDriver
 
 
-class LoginPage():
+class LoginPage(SeleniumDriver): # импортировал кастомный класс  SeleniumDriver
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     # locators
