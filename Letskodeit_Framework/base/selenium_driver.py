@@ -27,12 +27,11 @@ class SeleniumDriver():
         try:
             if not os.path.exists(destinationDirectory):
                 os.makedirs(destinationDirectory)
-            self.driver.save_screenshots(destinationFile)
+            self.driver.save_screenshot(destinationFile)
             self.log.info("Screenshot save to directory: " + destinationFile)
         except:
-            self.log.error("### Exception Occurred")
+            self.log.error("### Exception Occurred when taking screenshot")
             print_stack()
-
 
     def getTitle(self):
         return self.driver.title
