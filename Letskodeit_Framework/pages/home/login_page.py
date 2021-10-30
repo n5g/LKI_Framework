@@ -1,8 +1,10 @@
 import logging
 from lets_kode_it.Letskodeit_Framework.base.selenium_driver import SeleniumDriver
 from lets_kode_it.Letskodeit_Framework.utilities import custom_logger as cl
+from lets_kode_it.Letskodeit_Framework.base.basepage import BasePage
 
-class LoginPage(SeleniumDriver):
+# class LoginPage(SeleniumDriver):
+class LoginPage(BasePage):
 
     log = cl.customLogger(logging.DEBUG)
 
@@ -43,9 +45,8 @@ class LoginPage(SeleniumDriver):
         return result
 
     def verifyTitle(self):
-        #if "Let's Kode It" in self.getTitle():
-        if "Google" in self.getTitle():
-            return True
-        else:
-            return False
+        # return self.verifyPageTitle("Google")
+        return self.verifyPageTitle("Let's Kode It")
+
+
 
