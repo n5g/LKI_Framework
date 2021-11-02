@@ -1,10 +1,12 @@
-
 from lets_kode_it.Letskodeit_Framework.pages.courses.register_courses_page import RegisterCoursesPage
 from lets_kode_it.Letskodeit_Framework.utilities.teststatus import TestStatus
+from lets_kode_it.Letskodeit_Framework.pages.home.navigation_page import NavigationPage
+
 import unittest
 import pytest
 from ddt import ddt, data, unpack
 from lets_kode_it.Letskodeit_Framework.utilities.read_data import getCSVData
+
 
 
 @pytest.mark.usefixtures("oneTimeSetUp", "setUp")
@@ -15,9 +17,10 @@ class RegisterCoursesCSVDataTests(unittest.TestCase):
     def objectSetup(self, oneTimeSetUp):
         self.courses = RegisterCoursesPage(self.driver)
         self.ts = TestStatus(self.driver)
+        self.nav = NavigationPage(self.driver)
 
     def setUp(self):
-        self.courses.clickOnHomeButton()
+        self.nav.navigateToHome()
 
     @pytest.mark.run(order=1)
     @data(*getCSVData("D:/Other/code/py_return/lets_kode_it/Letskodeit_Framework/testdata.csv"))

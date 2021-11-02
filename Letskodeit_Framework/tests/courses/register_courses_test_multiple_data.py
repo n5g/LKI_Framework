@@ -1,4 +1,3 @@
-
 from lets_kode_it.Letskodeit_Framework.pages.courses.register_courses_page import RegisterCoursesPage
 from lets_kode_it.Letskodeit_Framework.utilities.teststatus import TestStatus
 import unittest
@@ -16,7 +15,8 @@ class RegisterCoursesTests(unittest.TestCase):
         self.ts = TestStatus(self.driver)
 
     @pytest.mark.run(order=1)
-    @data(("JavaScript for beginners", "Ivan Ivanov", "5100000000000008", "12/22", "123", "Gagarina", "Ufa"), ("Learn Python 3 from scratch", "Ivan Putin", "5100000000000008", "12/23", "124", "Ivanova", "Surgut"))
+    @data(("JavaScript for beginners", "Ivan Ivanov", "5100000000000008", "12/22", "123", "Gagarina", "Ufa"),
+          ("Learn Python 3 from scratch", "Ivan Putin", "5100000000000008", "12/23", "124", "Ivanova", "Surgut"))
     @unpack
     def test_invalidEnrollment(self, courseName, ccName, ccNum, ccExp, ccCVC, billingStreet, billingCity):
         self.courses.enterCourseName(courseName)
