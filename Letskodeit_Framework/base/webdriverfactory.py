@@ -9,6 +9,7 @@ class WebDriverFactory():
 
     def getWebDriverInstance(self):
         baseURL = "https://letskodeit.teachable.com/"
+        # baseURL = "https://sso.teachable.com/secure/42299/checkout/342639/complete-javascript-guide"
         if self.browser == "iexplorer":
             # Set ie driver
             driver = webdriver.Ie()

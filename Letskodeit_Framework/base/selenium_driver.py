@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 from traceback import print_stack
+
+from selenium.webdriver.remote import switch_to
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
@@ -64,7 +66,7 @@ class SeleniumDriver():
             self.log.info("Element found with locator: " + locator +
                           " and  locatorType: " + locatorType)
         except:
-            self.log.info("Element not found with locator: " + locator +
+            self.log.error("Element not found with locator: " + locator +
                           " and  locatorType: " + locatorType)
         return element
 
@@ -97,7 +99,7 @@ class SeleniumDriver():
             self.log.info("Clicked on element with locator: " + locator +
                           " locatorType: " + locatorType)
         except:
-            self.log.info("Cannot click on the element with locator: " + locator +
+            self.log.error("Cannot click on the element with locator: " + locator +
                           " locatorType: " + locatorType)
             print_stack()
 
@@ -113,7 +115,7 @@ class SeleniumDriver():
             self.log.info("Sent data on element with locator: " + locator +
                           " locatorType: " + locatorType)
         except:
-            self.log.info("Cannot send data on the element with locator: " + locator +
+            self.log.error("Cannot send data on the element with locator: " + locator +
                   " locatorType: " + locatorType)
             print_stack()
 
@@ -194,7 +196,7 @@ class SeleniumDriver():
                 self.log.info("Element not found")
                 return False
         except:
-            self.log.info("Element not found")
+            self.log.error("Element not found")
             return False
 
     def waitForElement(self, locator, locatorType="id",
@@ -217,9 +219,6 @@ class SeleniumDriver():
         return element
 
     def webScroll(self, direction="up"):
-        """
-        NEW METHOD
-        """
         if direction == "up":
             # Scroll Up
             self.driver.execute_script("window.scrollBy(0, -1000);")
@@ -227,3 +226,19 @@ class SeleniumDriver():
         if direction == "down":
             # Scroll Down
             self.driver.execute_script("window.scrollBy(0, 1000);")
+
+    def switchToFrame(self, locator="", locatorType="xpath"):
+        try:
+            if locator:  # This means if locator is not empty
+                element = self.getElement(locator, locatorType)
+            self.driver.switch_to.frame(element)
+            self.log.info("Switch to iframe with locator: " + locator +
+                          " locatorType: " + locatorType)
+        except:
+            self.log.error("Cannot switch to iframe with locator: " + locator +
+                           " locatorType: " + locatorType)
+            print_stack()
+
+    def switchToDefaultContent(self):
+        self.driver.switch_to.default_content()
+
