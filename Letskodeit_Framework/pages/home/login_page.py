@@ -2,6 +2,7 @@ import logging
 from lets_kode_it.Letskodeit_Framework.base.selenium_driver import SeleniumDriver
 from lets_kode_it.Letskodeit_Framework.utilities import custom_logger as cl
 from lets_kode_it.Letskodeit_Framework.base.basepage import BasePage
+from lets_kode_it.Letskodeit_Framework.pages.home.navigation_page import NavigationPage
 
 # class LoginPage(SeleniumDriver):
 class LoginPage(BasePage):
@@ -11,6 +12,7 @@ class LoginPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+        self.nav = NavigationPage(driver)
 
     # Locators
     _login_link = "Login"
@@ -47,6 +49,11 @@ class LoginPage(BasePage):
     def verifyTitle(self):
         # return self.verifyPageTitle("Google")
         return self.verifyPageTitle("Let's Kode It")
+
+    def logout(self):
+        self.nav.navigateToUserSettings()
+        self.elementClick(locator="a[href='/sign_out']", locatorType="css")
+
 
 
 
